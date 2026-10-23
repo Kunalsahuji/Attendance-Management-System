@@ -1,10 +1,13 @@
 # 🕒 AttendSphere - Full-Stack MERN Attendance Management System
 
+> 📋 **Assessment Assignment**: This project is developed as a Full-Stack MERN Technical Assessment assigned by **D-Table Analytics**.
+
 **AttendSphere** is an enterprise-grade, high-fidelity, and secure employee attendance tracking platform built for **D-Table Analytics**. It guarantees proof of physical presence, eliminates buddy punching, and automates shift duration tracking through real-time WebRTC camera selfie verification, browser GPS geolocation tracking, and server-authoritative 8-hour shift evaluation logic.
 
 ---
 
 ## 📌 Project Details
+- **Assigned By**: **D-Table Analytics** (Full-Stack MERN Developer Technical Assessment)
 - **Objective**: Build a world-class, production-ready, tamper-resistant attendance management system with role-based access control (Employee, Manager, Admin), live biometric photo verification (strictly forbidding file uploads), GPS geolocation tracking, server-side duration calculation, and an overtime approval workflow.
 - **Key Modules**:
   - **Biometric Terminal**: Live WebRTC camera selfie capture and GPS location acquisition with automatic hardware track termination.
@@ -76,6 +79,7 @@ npm run build    # Compiles production bundle
 
 | Detail | Value |
 | --- | --- |
+| Task Assigned By | D-Table Analytics (Full-Stack MERN Assessment) |
 | Deployed URL | https://attendance-management-system-gray-five.vercel.app/ |
 | Git Repository | https://github.com/Kunalsahuji/Attendance-Management-System |
 | Backend API | https://attendance-management-system-k7wg.onrender.com |
@@ -140,11 +144,11 @@ I'm **Kunal Sahu** — a full-stack developer (MERN) who loves turning rough dat
 🔗 **LinkedIn**: [kunalsahuji](https://www.linkedin.com/in/kunalsahuji/)  
 📌 **Notion**: [Watch my content](https://www.notion.so/1dff7c6ce1bb803787fbddd34e422ab4?v=1e0f7c6ce1bb8052b14c000cb57448ee&pvs=4)  
 📧 **Email**: [ksahu0103@gmail.com](mailto:ksahu0103@gmail.com)  
-🗂️ **This project**: [Attendance-Management-System](https://github.com/Kunalsahuji/Attendance-Management-System) · [Live demo](https://attendance-management-system-gray-five.vercel.app/)
+🗂️ **This project**: [Attendance-Management-System](https://github.com/Kunalsahuji/Attendance-Management-System) · [Live demo](https://attendance-management-system-gray-five.vercel.app/) (Assigned by **D-Table Analytics**)
 
 > Feedback, feature requests, and code reviews are all welcome — open an issue on the repo or drop me a mail.
 
 ---
 
 ## 🙌 Acknowledgements
-Developed with ❤️ by [Kunal Sahu](https://github.com/Kunalsahuji).
+Developed with ❤️ by [Kunal Sahu](https://github.com/Kunalsahuji) for the **D-Table Analytics** technical assessment.
