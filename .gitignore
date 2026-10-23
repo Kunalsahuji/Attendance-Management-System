@@ -1,1 +1,11 @@
 docs
+node_modules
+.env
+.env.local
+backend/.env
+frontend/.env
+uploads
+backend/uploads
+dist
+frontend/dist
+*.log
