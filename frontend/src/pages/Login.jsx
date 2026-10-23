@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useLoginMutation } from '../store/api/authApi';
 import { setCredentials } from '../store/slices/authSlice';
-import { Clock, Shield, Users, User, ArrowRight, AlertCircle, Loader2, Eye, EyeOff } from 'lucide-react';
+import { Clock, ArrowRight, AlertCircle, Loader2, Eye, EyeOff } from 'lucide-react';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -32,13 +32,6 @@ export default function Login() {
     } catch (err) {
       setErrorMessage(err?.data?.message || 'Invalid email or password.');
     }
-  };
-
-  // Quick 1-Click Demo Login Helper
-  const handleQuickLogin = (demoEmail, demoPassword) => {
-    setEmail(demoEmail);
-    setPassword(demoPassword);
-    setErrorMessage('');
   };
 
   return (
@@ -124,48 +117,6 @@ export default function Login() {
               )}
             </button>
           </form>
-
-          {/* Quick Demo Logins for Fast Evaluation (Disabled in Production) */}
-          {(import.meta.env.DEV || window.location.hostname === 'localhost') && (
-            <div className="mt-6 pt-5 border-t border-slate-800">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
-                  Fast Evaluation Logins
-                </span>
-                <span className="text-[10px] bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 px-2 py-0.5 rounded-full font-medium">
-                  Dev/Local Only
-                </span>
-              </div>
-              <div className="grid grid-cols-3 gap-2">
-                <button
-                  type="button"
-                  onClick={() => handleQuickLogin('admin@attendance.com', 'AdminPassword123!')}
-                  className="flex flex-col items-center justify-center p-2 rounded-xl bg-purple-950/30 hover:bg-purple-900/40 border border-purple-800/40 text-purple-300 transition cursor-pointer"
-                >
-                  <Shield className="w-4 h-4 mb-1 text-purple-400" />
-                  <span className="text-[11px] font-semibold">Admin</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => handleQuickLogin('manager@attendance.com', 'ManagerPassword123!')}
-                  className="flex flex-col items-center justify-center p-2 rounded-xl bg-indigo-950/30 hover:bg-indigo-900/40 border border-indigo-800/40 text-indigo-300 transition cursor-pointer"
-                >
-                  <Users className="w-4 h-4 mb-1 text-indigo-400" />
-                  <span className="text-[11px] font-semibold">Manager</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => handleQuickLogin('employee@attendance.com', 'EmployeePassword123!')}
-                  className="flex flex-col items-center justify-center p-2 rounded-xl bg-blue-950/30 hover:bg-blue-900/40 border border-blue-800/40 text-blue-300 transition cursor-pointer"
-                >
-                  <User className="w-4 h-4 mb-1 text-blue-400" />
-                  <span className="text-[11px] font-semibold">Employee</span>
-                </button>
-              </div>
-            </div>
-          )}
 
           <div className="mt-6 text-center text-xs text-slate-400">
             Don't have an account?{' '}
