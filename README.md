@@ -27,9 +27,9 @@
 
 ---
 
-## 2. Seed Test Accounts (One-Click Login Supported)
+## 2. Seed Accounts for Authorized Evaluation
 
-The application includes pre-configured seed accounts in MongoDB Atlas and 1-Click demo login buttons on the Sign In page:
+The application includes pre-configured seed accounts in MongoDB Atlas for authorized role evaluation:
 
 | Role | Email | Password | Scope & Responsibilities |
 |---|---|---|---|
