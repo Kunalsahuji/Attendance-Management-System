@@ -5,15 +5,14 @@
 ---
 
 ## 📌 Project Details
-- **Organization**: D-Table Analytics (Full-Stack MERN Assessment)
-- **Objective**: Build a production-ready, tamper-resistant attendance management system with role-based access control (Employee, Manager, Admin), live biometric photo verification (strictly forbidding file uploads), geolocation tracking, server-side duration math, and an overtime approval workflow.
+- **Objective**: Build a world-class, production-ready, tamper-resistant attendance management system with role-based access control (Employee, Manager, Admin), live biometric photo verification (strictly forbidding file uploads), GPS geolocation tracking, server-side duration calculation, and an overtime approval workflow.
 - **Key Modules**:
-  - **Biometric Terminal**: Live WebRTC camera selfie capture and GPS location acquisition with automatic hardware release.
+  - **Biometric Terminal**: Live WebRTC camera selfie capture and GPS location acquisition with automatic hardware track termination.
   - **Employee Hub**: Real-time ticking shift timer, 8-hour threshold progress bar, attendance history, and overtime claim filing.
   - **Manager Portal**: Team attendance dashboard, side-by-side punch-in/out biometric authenticity audit, and overtime adjudication.
   - **Executive Admin Console**: Organizational analytics, employee-to-manager designated reporting assignments, and company-wide audit certifications.
-  - **Daily Aggregated Reports**: Comprehensive daily attendance logs with overtime details, status filters, and instant CSV export.
-- **Design Philosophy**: Strict adherence to modern SaaS aesthetics — curated HSL dark mode palette, smooth gradients, responsive modal architecture with background scroll freezing (`useBodyScrollLock`), and micro-interactions across desktop and mobile viewports.
+  - **Daily Aggregated Reports**: Comprehensive daily attendance logs with overtime details, status filters, and instant client-side CSV export.
+- **Design Philosophy**: Strict adherence to a clean, modern SaaS design system — curated HSL dark mode palette, smooth gradients, responsive modal architecture with background scroll freezing (`useBodyScrollLock`), and micro-interactions across all desktop and mobile viewports.
 - **Tech Stack**:
   - **Frontend**: React 19 + Vite (JavaScript)
   - **State Management & Caching**: Redux Toolkit & RTK Query
@@ -21,7 +20,7 @@
   - **Icons**: Lucide React
   - **Backend**: Node.js + Express.js (REST API Architecture)
   - **Database**: MongoDB Atlas (Cloud Cluster via Mongoose ODM)
-  - **Security & Logging**: JWT (JSON Web Tokens), bcryptjs, Helmet, Morgan, and CORS
+  - **Security & Middleware**: JWT (JSON Web Tokens), bcryptjs, Helmet, Morgan, and CORS
 
 ---
 
@@ -40,44 +39,11 @@
 - **Biometric Authenticity Review**: Authorized Managers and Admins audit punch-in and punch-out selfies side by side, verify GPS coordinates, and certify status as **VALID** or flag as **INVALID (suspicious)** with audit remarks.
 - **Role-Scoped Daily Reports with CSV Export**: Aggregated daily attendance logs filterable by date, shift status, verification status, and overtime claims, with one-click CSV export generated entirely in the browser.
 - **Modal Scroll-Lock & Responsive Architecture**: Two-level scroll architecture with background scroll freezing (`useBodyScrollLock`) and `overscroll-contain` prevention across all screen resolutions and laptop viewports.
-
----
-
-## 🔗 Live Implementation
-🚀 **Live Web Application**: [https://attendance-management-system-gray-five.vercel.app/](https://attendance-management-system-gray-five.vercel.app/)  
-⚡ **Production Backend API**: [https://attendance-management-system-k7wg.onrender.com](https://attendance-management-system-k7wg.onrender.com)  
-📂 **GitHub Repository**: [https://github.com/Kunalsahuji/Attendance-Management-System](https://github.com/Kunalsahuji/Attendance-Management-System)  
-
-| Detail | Value |
-|---|---|
-| **Frontend Deployed URL** | https://attendance-management-system-gray-five.vercel.app/ |
-| **Backend API URL** | https://attendance-management-system-k7wg.onrender.com |
-| **Git Repository** | https://github.com/Kunalsahuji/Attendance-Management-System |
-| **Frontend Hosting** | Vercel (Auto-deployed from `main` branch with SPA rewrites) |
-| **Backend Hosting** | Render (Web Service running Node.js 24) |
-| **Database** | MongoDB Atlas (`kunalcluster.beakm07.mongodb.net`) |
-
----
-
-## 🔑 Authorized Evaluation Credentials
-
-The application uses standard secure credential-based authentication. Test credentials for evaluation:
-
-| Role | Email | Password | Access Scope |
-|---|---|---|---|
-| **Admin** | `admin@attendance.com` | `AdminPassword123!` | System-wide visibility, user management, manager assignments, executive audit |
-| **Manager** | `manager@attendance.com` | `ManagerPassword123!` | Assigned team members, biometric verification, overtime review |
-| **Employee** | `employee@attendance.com` | `EmployeePassword123!` | Personal biometric attendance, live shift timer, submit OT claims |
-
-> **Security Note:** Public registration via `/signup` is strictly restricted to **Employee** accounts to prevent unauthorized privilege escalation.
+- **Enterprise Privacy & Security**: Standard credential authentication, secure password hashing with bcryptjs, HTTP-only JWTs, Helmet security headers, CORS origin protection, and zero file-picker fallback for biometrics.
 
 ---
 
 ## 📦 Project Setup
-
-### Prerequisites
-- Node.js >= 18.x
-- Active MongoDB Atlas cluster URI
 
 ```bash
 # Clone the repository
@@ -95,7 +61,41 @@ npm run dev      # Starts Express server on http://localhost:5000
 cd ../frontend
 npm install
 npm run dev      # Starts Vite client on http://localhost:5173
+
+# 3. Production Build
+npm run build    # Compiles production bundle
 ```
+
+---
+
+## 🔗 Live Implementation
+🚀 **Live Demo**: [https://attendance-management-system-gray-five.vercel.app/](https://attendance-management-system-gray-five.vercel.app/)  
+📂 **GitHub Repository**: [https://github.com/Kunalsahuji/Attendance-Management-System](https://github.com/Kunalsahuji/Attendance-Management-System)  
+⚡ **Production Backend API**: [https://attendance-management-system-k7wg.onrender.com](https://attendance-management-system-k7wg.onrender.com)  
+🧪 **Try it instantly**: Open the live demo and log in with any of the authorized credentials below (Admin, Manager, or Employee) to test biometric verification, live shift timers, side-by-side authenticity review, and daily attendance CSV export without preparing a local environment.
+
+| Detail | Value |
+| --- | --- |
+| Deployed URL | https://attendance-management-system-gray-five.vercel.app/ |
+| Git Repository | https://github.com/Kunalsahuji/Attendance-Management-System |
+| Backend API | https://attendance-management-system-k7wg.onrender.com |
+| Hosting | Vercel (frontend SPA auto-deployed) + Render (Node.js API web service) |
+| Database | MongoDB Atlas Cloud Cluster (`kunalcluster.beakm07.mongodb.net`) |
+| Seed Accounts | Admin, Manager, and Employee pre-configured |
+
+---
+
+## 🔑 Authorized Evaluation Credentials
+
+The application uses standard secure credential-based authentication. Test credentials for evaluation:
+
+| Role | Email | Password | Access Scope |
+| --- | --- | --- | --- |
+| **Admin** | `admin@attendance.com` | `AdminPassword123!` | System-wide visibility, user management, manager assignments, executive audit |
+| **Manager** | `manager@attendance.com` | `ManagerPassword123!` | Assigned team members, biometric verification, overtime review |
+| **Employee** | `employee@attendance.com` | `EmployeePassword123!` | Personal biometric attendance, live shift timer, submit OT claims |
+
+> **Security Note:** Public registration via `/signup` is strictly restricted to **Employee** accounts to prevent unauthorized privilege escalation.
 
 ---
 
@@ -134,7 +134,7 @@ npm run build  # Production Vite bundle compilation (clean build in <1s)
 ---
 
 ## 🤝 Connect with Me
-I'm **Kunal Sahu** — a full-stack developer (MERN) who loves turning complex business workflows and briefs into clean, fast, and production-ready products. If you'd like to discuss this project, ask for a walkthrough, or collaborate on something, reach out any time:
+I'm **Kunal Sahu** — a full-stack developer (MERN) who loves turning rough datasets and briefs into clean, fast, production-ready products. If you'd like to discuss this project, ask for a walkthrough, or collaborate on something, reach out any time:
 
 📦 **GitHub**: [github.com/Kunalsahuji](https://github.com/Kunalsahuji)  
 🔗 **LinkedIn**: [kunalsahuji](https://www.linkedin.com/in/kunalsahuji/)  
@@ -142,9 +142,9 @@ I'm **Kunal Sahu** — a full-stack developer (MERN) who loves turning complex b
 📧 **Email**: [ksahu0103@gmail.com](mailto:ksahu0103@gmail.com)  
 🗂️ **This project**: [Attendance-Management-System](https://github.com/Kunalsahuji/Attendance-Management-System) · [Live demo](https://attendance-management-system-gray-five.vercel.app/)
 
-> Feedback, feature requests, and code reviews are all welcome — open an issue on the repo or drop me an email.
+> Feedback, feature requests, and code reviews are all welcome — open an issue on the repo or drop me a mail.
 
 ---
 
 ## 🙌 Acknowledgements
-Developed with ❤️ by [Kunal Sahu](https://github.com/Kunalsahuji) for the **D-Table Analytics** assessment.
+Developed with ❤️ by [Kunal Sahu](https://github.com/Kunalsahuji).
