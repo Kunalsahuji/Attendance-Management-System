@@ -1,14 +1,32 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "This is a simple backend for an attendance management system",
-  "main": "index.js",
+  "description": "Backend API for Attendance Management System",
+  "main": "src/server.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed": "node src/scripts/seed.js",
+    "verify": "node scripts/verification/verify-submission.js",
+    "verify:env": "node scripts/verification/check-env.js",
+    "verify:smoke": "node scripts/verification/smoke-test.js",
+    "test": "node --test tests/**/*.test.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cloudinary": "^2.5.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.5",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1"
+  }
 }
