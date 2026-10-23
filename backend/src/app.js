@@ -24,17 +24,20 @@ app.use(helmet({
 
 // CORS Configuration
 const allowedOrigins = [
-  process.env.CLIENT_URL || 'http://localhost:5173',
+  process.env.CLIENT_URL,
+  'https://attendance-management-system-gray-five.vercel.app',
+  'http://localhost:5173',
   'http://localhost:3000',
   'http://127.0.0.1:5173'
-];
+].filter(Boolean);
 
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
+    // Allow server-to-server, listed domains, or any Vercel preview deployment
+    if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
       callback(null, true);
     } else {
-      callback(null, true); // Allow during local evaluation/testing
+      callback(null, true); // Fallback for local evaluation
     }
   },
   credentials: true,
