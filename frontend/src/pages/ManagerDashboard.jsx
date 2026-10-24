@@ -134,29 +134,37 @@ export default function ManagerDashboard() {
   const stats = statsData?.stats || {};
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 bg-slate-950 min-h-screen text-slate-100">
+    <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 py-5 sm:py-8 space-y-6 sm:space-y-8 bg-slate-950 min-h-screen text-slate-100 min-w-0">
       {/* Page Header */}
-      <div className="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-slate-900 border border-slate-800 p-4 sm:p-6 rounded-2xl shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 mb-1">
+          <div className="flex flex-wrap items-center gap-2 mb-1.5">
             <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
               Department Operations
             </span>
             <span className="text-xs text-slate-400 font-medium">Team Management Portal</span>
           </div>
-          <h1 className="text-2xl font-bold text-white tracking-tight flex items-center gap-2.5">
-            <Users className="w-6 h-6 text-indigo-400" /> Team Attendance & Verification Hub
+          <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-2.5">
+            <Users className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400 shrink-0" />
+            <span>Team Attendance & Verification Hub</span>
           </h1>
-          <p className="text-xs text-slate-400 mt-1 max-w-2xl">
+          <p className="text-xs text-slate-400 mt-1 max-w-2xl leading-relaxed">
             Audit live biometric selfies, inspect geolocation coordinates, and adjudicate pending overtime requests for your direct team.
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
-          <div className="bg-slate-800/80 border border-slate-700/80 px-4 py-2 rounded-xl text-right">
-            <div className="text-[10px] uppercase font-semibold text-slate-400 tracking-wider">Supervising Manager</div>
-            <div className="text-xs font-bold text-white">{user?.name}</div>
-            <div className="text-[10px] text-indigo-400 font-medium">{user?.department}</div>
+        {/* Supervising Manager Card */}
+        <div className="flex items-center gap-3 bg-slate-800/70 border border-slate-700/70 p-3 sm:px-4 sm:py-2.5 rounded-xl w-full md:w-auto shrink-0 shadow-sm">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-violet-500 flex items-center justify-center font-bold text-white shadow-md shadow-indigo-500/25 text-sm shrink-0">
+            {user?.name?.charAt(0)?.toUpperCase() || 'M'}
+          </div>
+          <div className="flex flex-col min-w-0 text-left">
+            <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Supervising Manager</div>
+            <div className="text-sm font-bold text-white truncate">{user?.name || 'Manager'}</div>
+            <div className="text-[11px] text-indigo-400 font-medium flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0 animate-pulse"></span>
+              <span className="truncate">{user?.department || 'Operations'}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -164,99 +172,99 @@ export default function ManagerDashboard() {
       {/* Global Feedback Alert */}
       {feedback.message && (
         <div
-          className={`p-4 rounded-xl text-xs font-medium border flex items-center justify-between shadow-lg transition-all ${
+          className={`p-3.5 sm:p-4 rounded-xl text-xs font-medium border flex items-center justify-between shadow-lg transition-all ${
             feedback.type === 'success'
               ? 'bg-emerald-950/70 border-emerald-800 text-emerald-300'
               : 'bg-rose-950/70 border-rose-800 text-rose-300'
           }`}
         >
           <div className="flex items-center gap-2">
-            {feedback.type === 'success' ? <CheckCircle className="w-4 h-4 text-emerald-400" /> : <AlertTriangle className="w-4 h-4 text-rose-400" />}
+            {feedback.type === 'success' ? <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" /> : <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0" />}
             <span>{feedback.message}</span>
           </div>
-          <button onClick={() => setFeedback({ type: '', message: '' })} className="hover:opacity-75">
+          <button onClick={() => setFeedback({ type: '', message: '' })} className="hover:opacity-75 p-1">
             <X className="w-4 h-4" />
           </button>
         </div>
       )}
 
       {/* Real-time KPI Stats Banner */}
-      <div className="grid grid-cols-2 lg:grid-cols-6 gap-4">
-        <div className="bg-slate-900 border border-slate-800 p-4 rounded-2xl shadow-md">
-          <div className="flex items-center justify-between text-slate-400 mb-2">
-            <span className="text-[11px] font-semibold uppercase tracking-wider">Team Size</span>
-            <Users className="w-4 h-4 text-slate-400" />
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+        <div className="bg-slate-900 border border-slate-800 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-md">
+          <div className="flex items-center justify-between text-slate-400 mb-1.5">
+            <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider">Team Size</span>
+            <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-400 shrink-0" />
           </div>
-          <div className="text-2xl font-bold text-white">{statsLoading ? '—' : stats.teamSize ?? 0}</div>
-          <div className="text-[11px] text-slate-500 mt-0.5">Assigned Members</div>
+          <div className="text-xl sm:text-2xl font-bold text-white">{statsLoading ? '—' : stats.teamSize ?? 0}</div>
+          <div className="text-[10px] sm:text-[11px] text-slate-500 mt-0.5 truncate">Assigned Members</div>
         </div>
 
-        <div className="bg-slate-900 border border-slate-800 p-4 rounded-2xl shadow-md">
-          <div className="flex items-center justify-between text-slate-400 mb-2">
-            <span className="text-[11px] font-semibold uppercase tracking-wider">Present Today</span>
-            <UserCheck className="w-4 h-4 text-emerald-400" />
+        <div className="bg-slate-900 border border-slate-800 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-md">
+          <div className="flex items-center justify-between text-slate-400 mb-1.5">
+            <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider">Present Today</span>
+            <UserCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400 shrink-0" />
           </div>
-          <div className="text-2xl font-bold text-emerald-400">{statsLoading ? '—' : stats.presentToday ?? 0}</div>
-          <div className="text-[11px] text-emerald-500/80 mt-0.5 font-medium">
+          <div className="text-xl sm:text-2xl font-bold text-emerald-400">{statsLoading ? '—' : stats.presentToday ?? 0}</div>
+          <div className="text-[10px] sm:text-[11px] text-emerald-500/80 mt-0.5 font-medium truncate">
             {stats.attendanceRate ?? 0}% Turnout Rate
           </div>
         </div>
 
-        <div className="bg-slate-900 border border-slate-800 p-4 rounded-2xl shadow-md">
-          <div className="flex items-center justify-between text-slate-400 mb-2">
-            <span className="text-[11px] font-semibold uppercase tracking-wider">Active On Duty</span>
-            <TrendingUp className="w-4 h-4 text-indigo-400" />
+        <div className="bg-slate-900 border border-slate-800 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-md">
+          <div className="flex items-center justify-between text-slate-400 mb-1.5">
+            <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider">Active On Duty</span>
+            <TrendingUp className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-indigo-400 shrink-0" />
           </div>
-          <div className="text-2xl font-bold text-indigo-400">{statsLoading ? '—' : stats.activeSessions ?? 0}</div>
-          <div className="text-[11px] text-indigo-500/80 mt-0.5">Punch-In Session Open</div>
+          <div className="text-xl sm:text-2xl font-bold text-indigo-400">{statsLoading ? '—' : stats.activeSessions ?? 0}</div>
+          <div className="text-[10px] sm:text-[11px] text-indigo-500/80 mt-0.5 truncate">Punch-In Active</div>
         </div>
 
-        <div className="bg-slate-900 border border-slate-800 p-4 rounded-2xl shadow-md">
-          <div className="flex items-center justify-between text-slate-400 mb-2">
-            <span className="text-[11px] font-semibold uppercase tracking-wider">Completed Shifts</span>
-            <CheckCircle className="w-4 h-4 text-teal-400" />
+        <div className="bg-slate-900 border border-slate-800 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-md">
+          <div className="flex items-center justify-between text-slate-400 mb-1.5">
+            <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider">Completed Shifts</span>
+            <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-teal-400 shrink-0" />
           </div>
-          <div className="text-2xl font-bold text-teal-400">{statsLoading ? '—' : stats.completedShifts ?? 0}</div>
-          <div className="text-[11px] text-teal-500/80 mt-0.5">Standard 8h+ Workdays</div>
+          <div className="text-xl sm:text-2xl font-bold text-teal-400">{statsLoading ? '—' : stats.completedShifts ?? 0}</div>
+          <div className="text-[10px] sm:text-[11px] text-teal-500/80 mt-0.5 truncate">Standard 8h+</div>
         </div>
 
-        <div className="bg-slate-900 border border-slate-800 p-4 rounded-2xl shadow-md relative overflow-hidden">
+        <div className="bg-slate-900 border border-slate-800 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-md relative overflow-hidden">
           {stats.pendingVerifications > 0 && (
-            <div className="absolute top-0 right-0 w-2 h-2 bg-amber-500 rounded-full animate-ping" />
+            <div className="absolute top-2 right-2 w-2 h-2 bg-amber-500 rounded-full animate-ping" />
           )}
-          <div className="flex items-center justify-between text-slate-400 mb-2">
-            <span className="text-[11px] font-semibold uppercase tracking-wider">Pending Verify</span>
-            <ShieldAlert className="w-4 h-4 text-amber-400" />
+          <div className="flex items-center justify-between text-slate-400 mb-1.5">
+            <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider">Pending Verify</span>
+            <ShieldAlert className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 shrink-0" />
           </div>
-          <div className="text-2xl font-bold text-amber-400">{statsLoading ? '—' : stats.pendingVerifications ?? 0}</div>
-          <div className="text-[11px] text-amber-500/80 mt-0.5">Biometric Queue</div>
+          <div className="text-xl sm:text-2xl font-bold text-amber-400">{statsLoading ? '—' : stats.pendingVerifications ?? 0}</div>
+          <div className="text-[10px] sm:text-[11px] text-amber-500/80 mt-0.5 truncate">Biometric Queue</div>
         </div>
 
-        <div className="bg-slate-900 border border-slate-800 p-4 rounded-2xl shadow-md relative overflow-hidden">
+        <div className="bg-slate-900 border border-slate-800 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-md relative overflow-hidden">
           {stats.pendingOvertime > 0 && (
-            <div className="absolute top-0 right-0 w-2 h-2 bg-purple-500 rounded-full animate-ping" />
+            <div className="absolute top-2 right-2 w-2 h-2 bg-purple-500 rounded-full animate-ping" />
           )}
-          <div className="flex items-center justify-between text-slate-400 mb-2">
-            <span className="text-[11px] font-semibold uppercase tracking-wider">Pending OT</span>
-            <Clock className="w-4 h-4 text-purple-400" />
+          <div className="flex items-center justify-between text-slate-400 mb-1.5">
+            <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider">Pending OT</span>
+            <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-400 shrink-0" />
           </div>
-          <div className="text-2xl font-bold text-purple-400">{statsLoading ? '—' : stats.pendingOvertime ?? 0}</div>
-          <div className="text-[11px] text-purple-500/80 mt-0.5">Awaiting Decision</div>
+          <div className="text-xl sm:text-2xl font-bold text-purple-400">{statsLoading ? '—' : stats.pendingOvertime ?? 0}</div>
+          <div className="text-[10px] sm:text-[11px] text-purple-500/80 mt-0.5 truncate">Awaiting Decision</div>
         </div>
       </div>
 
-      {/* Navigation Tabs */}
-      <div className="flex border-b border-slate-800 gap-2">
+      {/* Navigation Tabs (Swipeable on mobile) */}
+      <div className="flex border-b border-slate-800 gap-1.5 sm:gap-2 overflow-x-auto scrollbar-none pb-px -mx-3.5 px-3.5 sm:mx-0 sm:px-0">
         <button
           onClick={() => setActiveTab('verification')}
-          className={`py-3 px-4 text-xs font-semibold border-b-2 transition flex items-center gap-2 cursor-pointer ${
+          className={`py-2.5 sm:py-3 px-3 sm:px-4 text-xs font-semibold border-b-2 transition flex items-center gap-2 cursor-pointer shrink-0 whitespace-nowrap ${
             activeTab === 'verification'
               ? 'border-indigo-500 text-indigo-400 bg-indigo-500/5'
               : 'border-transparent text-slate-400 hover:text-slate-200'
           }`}
         >
-          <ShieldAlert className="w-4 h-4" />
-          Biometric Verification Queue
+          <ShieldAlert className="w-4 h-4 shrink-0" />
+          <span>Biometric Verification Queue</span>
           {pendingVerifications.length > 0 && (
             <span className="ml-1 px-1.5 py-0.5 bg-amber-500/20 text-amber-400 border border-amber-500/30 rounded-full text-[10px]">
               {pendingVerifications.length}
@@ -266,14 +274,14 @@ export default function ManagerDashboard() {
 
         <button
           onClick={() => setActiveTab('overtime')}
-          className={`py-3 px-4 text-xs font-semibold border-b-2 transition flex items-center gap-2 cursor-pointer ${
+          className={`py-2.5 sm:py-3 px-3 sm:px-4 text-xs font-semibold border-b-2 transition flex items-center gap-2 cursor-pointer shrink-0 whitespace-nowrap ${
             activeTab === 'overtime'
               ? 'border-indigo-500 text-indigo-400 bg-indigo-500/5'
               : 'border-transparent text-slate-400 hover:text-slate-200'
           }`}
         >
-          <Clock className="w-4 h-4" />
-          Overtime Claims
+          <Clock className="w-4 h-4 shrink-0" />
+          <span>Overtime Claims</span>
           {pendingOtRequests.length > 0 && (
             <span className="ml-1 px-1.5 py-0.5 bg-purple-500/20 text-purple-400 border border-purple-500/30 rounded-full text-[10px]">
               {pendingOtRequests.length}
@@ -283,14 +291,14 @@ export default function ManagerDashboard() {
 
         <button
           onClick={() => setActiveTab('history')}
-          className={`py-3 px-4 text-xs font-semibold border-b-2 transition flex items-center gap-2 cursor-pointer ${
+          className={`py-2.5 sm:py-3 px-3 sm:px-4 text-xs font-semibold border-b-2 transition flex items-center gap-2 cursor-pointer shrink-0 whitespace-nowrap ${
             activeTab === 'history'
               ? 'border-indigo-500 text-indigo-400 bg-indigo-500/5'
               : 'border-transparent text-slate-400 hover:text-slate-200'
           }`}
         >
-          <FileCheck className="w-4 h-4" />
-          All Team Attendance Records
+          <FileCheck className="w-4 h-4 shrink-0" />
+          <span>All Team Attendance Records</span>
           <span className="ml-1 px-1.5 py-0.5 bg-slate-800 text-slate-400 rounded-full text-[10px]">
             {allRecords.length}
           </span>
@@ -299,19 +307,22 @@ export default function ManagerDashboard() {
 
       {/* Tab 1: Biometric Verification Queue */}
       {activeTab === 'verification' && (
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-6 shadow-xl space-y-4 min-w-0">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
-              <h2 className="text-base font-bold text-white flex items-center gap-2">
-                <ShieldAlert className="w-5 h-5 text-amber-400" /> Pending Biometric Verifications
+              <h2 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+                <ShieldAlert className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 shrink-0" />
+                <span>Pending Biometric Verifications</span>
               </h2>
               <p className="text-xs text-slate-400 mt-0.5">
                 Inspect punch selfies and live geolocation coordinates to certify authenticity.
               </p>
             </div>
-            <span className="text-xs bg-slate-800 px-3 py-1 rounded-xl text-slate-300 font-medium self-start sm:self-auto">
-              {pendingVerifications.length} Pending Actions
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-[11px] sm:text-xs bg-slate-800 px-3 py-1 rounded-xl text-slate-300 font-medium">
+                {pendingVerifications.length} Pending Actions
+              </span>
+            </div>
           </div>
 
           {teamLoading ? (
@@ -323,8 +334,8 @@ export default function ManagerDashboard() {
               <p>There are no unverified attendance records in your team queue.</p>
             </div>
           ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs text-slate-300">
+            <div className="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0 rounded-xl border border-slate-800/80">
+              <table className="w-full min-w-[760px] text-left text-xs text-slate-300">
                 <thead className="bg-slate-800/60 uppercase tracking-wider text-slate-400 border-b border-slate-700">
                   <tr>
                     <th className="py-3 px-4">Employee</th>
@@ -449,17 +460,18 @@ export default function ManagerDashboard() {
 
       {/* Tab 2: Overtime Claims */}
       {activeTab === 'overtime' && (
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-6 shadow-xl space-y-4 min-w-0">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
-              <h2 className="text-base font-bold text-white flex items-center gap-2">
-                <Clock className="w-5 h-5 text-purple-400" /> Team Overtime Claims
+              <h2 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+                <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400 shrink-0" />
+                <span>Team Overtime Claims</span>
               </h2>
               <p className="text-xs text-slate-400 mt-0.5">
                 Adjudicate extra-hour requests linked to employee attendance sessions.
               </p>
             </div>
-            <span className="text-xs bg-slate-800 px-3 py-1 rounded-xl text-slate-300 font-medium self-start sm:self-auto">
+            <span className="text-[11px] sm:text-xs bg-slate-800 px-3 py-1 rounded-xl text-slate-300 font-medium self-start sm:self-auto">
               {pendingOtRequests.length} Pending Review
             </span>
           </div>
@@ -471,8 +483,8 @@ export default function ManagerDashboard() {
               No overtime requests submitted by your team yet.
             </div>
           ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs text-slate-300">
+            <div className="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0 rounded-xl border border-slate-800/80">
+              <table className="w-full min-w-[720px] text-left text-xs text-slate-300">
                 <thead className="bg-slate-800/60 uppercase tracking-wider text-slate-400 border-b border-slate-700">
                   <tr>
                     <th className="py-3 px-4">Employee</th>
@@ -551,11 +563,12 @@ export default function ManagerDashboard() {
 
       {/* Tab 3: Complete Team History & Search */}
       {activeTab === 'history' && (
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-6 shadow-xl space-y-4 min-w-0">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
             <div>
-              <h2 className="text-base font-bold text-white flex items-center gap-2">
-                <FileCheck className="w-5 h-5 text-indigo-400" /> Team Attendance Directory
+              <h2 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+                <FileCheck className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-400 shrink-0" />
+                <span>Team Attendance Directory</span>
               </h2>
               <p className="text-xs text-slate-400 mt-0.5">
                 Full historical log of attendance sessions for your assigned team members.
@@ -563,28 +576,28 @@ export default function ManagerDashboard() {
             </div>
 
             {/* Filter Bar */}
-            <div className="flex flex-wrap items-center gap-2.5">
-              <div className="relative">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
+              <div className="relative w-full sm:w-44">
                 <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
                   placeholder="Search employee..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-8 pr-3 py-1.5 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-44"
+                  className="w-full pl-8 pr-3 py-1.5 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-indigo-500"
                 />
               </div>
 
-              <div className="flex items-center gap-1.5 bg-slate-800 border border-slate-700 px-2 py-1 rounded-xl">
-                <Calendar className="w-3.5 h-3.5 text-indigo-400" />
+              <div className="flex items-center gap-1.5 bg-slate-800 border border-slate-700 px-2.5 py-1.5 rounded-xl w-full sm:w-auto">
+                <Calendar className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
                 <input
                   type="date"
                   value={dateFilter}
                   onChange={(e) => setDateFilter(e.target.value)}
-                  className="bg-transparent text-xs text-white focus:outline-none"
+                  className="bg-transparent text-xs text-white focus:outline-none w-full sm:w-auto"
                 />
                 {dateFilter && (
-                  <button onClick={() => setDateFilter('')} className="text-slate-400 hover:text-white text-[10px]">
+                  <button onClick={() => setDateFilter('')} className="text-slate-400 hover:text-white text-[10px] p-0.5">
                     <X className="w-3 h-3" />
                   </button>
                 )}
@@ -593,7 +606,7 @@ export default function ManagerDashboard() {
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="bg-slate-800 border border-slate-700 rounded-xl px-2.5 py-1.5 text-xs text-white focus:outline-none"
+                className="bg-slate-800 border border-slate-700 rounded-xl px-2.5 py-1.5 text-xs text-white focus:outline-none flex-1 sm:flex-none"
               >
                 <option value="ALL">All Shifts</option>
                 <option value="COMPLETED">Completed (&ge;8h)</option>
@@ -604,7 +617,7 @@ export default function ManagerDashboard() {
               <select
                 value={verificationFilter}
                 onChange={(e) => setVerificationFilter(e.target.value)}
-                className="bg-slate-800 border border-slate-700 rounded-xl px-2.5 py-1.5 text-xs text-white focus:outline-none"
+                className="bg-slate-800 border border-slate-700 rounded-xl px-2.5 py-1.5 text-xs text-white focus:outline-none flex-1 sm:flex-none"
               >
                 <option value="ALL">All Biometrics</option>
                 <option value="PENDING">Pending</option>
@@ -619,8 +632,8 @@ export default function ManagerDashboard() {
               No team attendance records match the selected criteria.
             </div>
           ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs text-slate-300">
+            <div className="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0 rounded-xl border border-slate-800/80">
+              <table className="w-full min-w-[760px] text-left text-xs text-slate-300">
                 <thead className="bg-slate-800/60 uppercase tracking-wider text-slate-400 border-b border-slate-700">
                   <tr>
                     <th className="py-3 px-4">Employee</th>

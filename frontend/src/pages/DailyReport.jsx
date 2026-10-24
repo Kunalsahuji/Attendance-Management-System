@@ -129,11 +129,11 @@ export default function DailyReport() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 bg-slate-950 min-h-screen text-slate-100">
+    <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 py-5 sm:py-8 space-y-6 sm:space-y-8 bg-slate-950 min-h-screen text-slate-100 min-w-0">
       {/* Page Header */}
-      <div className="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-slate-900 border border-slate-800 p-4 sm:p-6 rounded-2xl shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 mb-1">
+          <div className="flex flex-wrap items-center gap-2 mb-1.5">
             <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
               Audit & Compliance
             </span>
@@ -145,31 +145,32 @@ export default function DailyReport() {
                 : 'Personal Attendance Scope'}
             </span>
           </div>
-          <h1 className="text-2xl font-bold text-white tracking-tight flex items-center gap-2.5">
-            <FileSpreadsheet className="w-6 h-6 text-indigo-400" /> Daily Attendance Ledger & Reports
+          <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-2.5">
+            <FileSpreadsheet className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400 shrink-0" />
+            <span>Daily Attendance Ledger & Reports</span>
           </h1>
-          <p className="text-xs text-slate-400 mt-1 max-w-2xl">
+          <p className="text-xs text-slate-400 mt-1 max-w-2xl leading-relaxed">
             Authorized daily attendance logs with live camera biometric verification, GPS geofencing coordinates, and overtime linkage.
           </p>
         </div>
 
         {/* Date Selector & Export Button */}
-        <div className="flex flex-wrap items-center gap-3">
-          <div className="flex items-center gap-2 bg-slate-800/90 border border-slate-700 px-3 py-1.5 rounded-xl shadow-inner">
-            <Calendar className="w-4 h-4 text-indigo-400" />
+        <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 w-full sm:w-auto">
+          <div className="flex items-center gap-2 bg-slate-800/90 border border-slate-700 px-3 py-1.5 rounded-xl shadow-inner w-full sm:w-auto">
+            <Calendar className="w-4 h-4 text-indigo-400 shrink-0" />
             <span className="text-xs text-slate-300 font-medium">Audit Date:</span>
             <input
               type="date"
               value={selectedDate}
               onChange={(e) => setSelectedDate(e.target.value)}
-              className="bg-transparent text-xs text-white font-semibold focus:outline-none cursor-pointer"
+              className="bg-transparent text-xs text-white font-semibold focus:outline-none cursor-pointer w-full sm:w-auto"
             />
           </div>
 
           <button
             onClick={handleExportCSV}
             disabled={filteredRecords.length === 0}
-            className="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-800 disabled:text-slate-500 text-white rounded-xl text-xs font-semibold shadow-md shadow-indigo-600/20 transition flex items-center gap-1.5 cursor-pointer"
+            className="w-full sm:w-auto justify-center px-3.5 py-2 bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-800 disabled:text-slate-500 text-white rounded-xl text-xs font-semibold shadow-md shadow-indigo-600/20 transition flex items-center gap-1.5 cursor-pointer"
           >
             <Download className="w-4 h-4" /> Export CSV
           </button>
@@ -177,42 +178,42 @@ export default function DailyReport() {
       </div>
 
       {/* Summary Metrics Bar */}
-      <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
-        <div className="bg-slate-900 border border-slate-800 p-4 rounded-2xl shadow-md">
-          <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Logs Found</span>
-          <div className="text-2xl font-bold text-white mt-1">{summary.count}</div>
-          <div className="text-[11px] text-slate-500 mt-0.5">For {selectedDate}</div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+        <div className="bg-slate-900 border border-slate-800 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-md">
+          <span className="text-[10px] sm:text-[11px] uppercase font-bold text-slate-400 tracking-wider">Logs Found</span>
+          <div className="text-xl sm:text-2xl font-bold text-white mt-1">{summary.count}</div>
+          <div className="text-[10px] sm:text-[11px] text-slate-500 mt-0.5 truncate">For {selectedDate}</div>
         </div>
 
-        <div className="bg-slate-900 border border-slate-800 p-4 rounded-2xl shadow-md">
-          <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Total Duration</span>
-          <div className="text-2xl font-bold text-indigo-400 mt-1">{summary.totalHours} hrs</div>
-          <div className="text-[11px] text-indigo-500/80 mt-0.5">Cumulative Work Time</div>
+        <div className="bg-slate-900 border border-slate-800 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-md">
+          <span className="text-[10px] sm:text-[11px] uppercase font-bold text-slate-400 tracking-wider">Total Duration</span>
+          <div className="text-xl sm:text-2xl font-bold text-indigo-400 mt-1">{summary.totalHours} hrs</div>
+          <div className="text-[10px] sm:text-[11px] text-indigo-500/80 mt-0.5 truncate">Cumulative Work</div>
         </div>
 
-        <div className="bg-slate-900 border border-slate-800 p-4 rounded-2xl shadow-md">
-          <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Completed (&ge;8h)</span>
-          <div className="text-2xl font-bold text-emerald-400 mt-1">{summary.completed}</div>
-          <div className="text-[11px] text-emerald-500/80 mt-0.5">Full Shifts Completed</div>
+        <div className="bg-slate-900 border border-slate-800 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-md">
+          <span className="text-[10px] sm:text-[11px] uppercase font-bold text-slate-400 tracking-wider">Completed (&ge;8h)</span>
+          <div className="text-xl sm:text-2xl font-bold text-emerald-400 mt-1">{summary.completed}</div>
+          <div className="text-[10px] sm:text-[11px] text-emerald-500/80 mt-0.5 truncate">Full Shifts</div>
         </div>
 
-        <div className="bg-slate-900 border border-slate-800 p-4 rounded-2xl shadow-md">
-          <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Pending Verify</span>
-          <div className="text-2xl font-bold text-amber-400 mt-1">{summary.pendingVerify}</div>
-          <div className="text-[11px] text-amber-500/80 mt-0.5">Awaiting Biometrics</div>
+        <div className="bg-slate-900 border border-slate-800 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-md">
+          <span className="text-[10px] sm:text-[11px] uppercase font-bold text-slate-400 tracking-wider">Pending Verify</span>
+          <div className="text-xl sm:text-2xl font-bold text-amber-400 mt-1">{summary.pendingVerify}</div>
+          <div className="text-[10px] sm:text-[11px] text-amber-500/80 mt-0.5 truncate">Awaiting Biometrics</div>
         </div>
 
-        <div className="bg-slate-900 border border-slate-800 p-4 rounded-2xl shadow-md">
-          <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Approved OT</span>
-          <div className="text-2xl font-bold text-purple-400 mt-1">+{summary.approvedOtHours} hrs</div>
-          <div className="text-[11px] text-purple-500/80 mt-0.5">Authorized Extra Time</div>
+        <div className="bg-slate-900 border border-slate-800 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-md col-span-2 sm:col-span-1">
+          <span className="text-[10px] sm:text-[11px] uppercase font-bold text-slate-400 tracking-wider">Approved OT</span>
+          <div className="text-xl sm:text-2xl font-bold text-purple-400 mt-1">+{summary.approvedOtHours} hrs</div>
+          <div className="text-[10px] sm:text-[11px] text-purple-500/80 mt-0.5 truncate">Authorized Extra</div>
         </div>
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-2.5 flex-1 min-w-[240px]">
-          <div className="relative w-full max-w-sm">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 sm:p-4 shadow-xl flex flex-wrap items-center justify-between gap-3 min-w-0">
+        <div className="flex items-center gap-2.5 w-full lg:w-auto flex-1 min-w-0">
+          <div className="relative w-full max-w-full lg:max-w-sm">
             <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
@@ -224,7 +225,7 @@ export default function DailyReport() {
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2.5">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 w-full lg:w-auto">
           <div className="flex items-center gap-1 text-xs text-slate-400">
             <Filter className="w-3.5 h-3.5 text-indigo-400" /> Filters:
           </div>
@@ -232,7 +233,7 @@ export default function DailyReport() {
           <select
             value={shiftFilter}
             onChange={(e) => setShiftFilter(e.target.value)}
-            className="bg-slate-800 border border-slate-700 rounded-xl px-2.5 py-1.5 text-xs text-white focus:outline-none"
+            className="bg-slate-800 border border-slate-700 rounded-xl px-2.5 py-1.5 text-xs text-white focus:outline-none flex-1 sm:flex-none"
           >
             <option value="ALL">All Shift Types</option>
             <option value="COMPLETED">Completed (&ge;8 hrs)</option>
@@ -243,7 +244,7 @@ export default function DailyReport() {
           <select
             value={verifyFilter}
             onChange={(e) => setVerifyFilter(e.target.value)}
-            className="bg-slate-800 border border-slate-700 rounded-xl px-2.5 py-1.5 text-xs text-white focus:outline-none"
+            className="bg-slate-800 border border-slate-700 rounded-xl px-2.5 py-1.5 text-xs text-white focus:outline-none flex-1 sm:flex-none"
           >
             <option value="ALL">All Biometrics</option>
             <option value="VALID">Valid</option>
@@ -254,7 +255,7 @@ export default function DailyReport() {
           <select
             value={otFilter}
             onChange={(e) => setOtFilter(e.target.value)}
-            className="bg-slate-800 border border-slate-700 rounded-xl px-2.5 py-1.5 text-xs text-white focus:outline-none"
+            className="bg-slate-800 border border-slate-700 rounded-xl px-2.5 py-1.5 text-xs text-white focus:outline-none flex-1 sm:flex-none"
           >
             <option value="ALL">All Overtime</option>
             <option value="APPROVED">Approved</option>
@@ -266,12 +267,12 @@ export default function DailyReport() {
       </div>
 
       {/* Report Table Card */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
-        <div className="flex items-center justify-between">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-6 shadow-xl space-y-4 min-w-0">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4">
           <h2 className="text-sm font-bold text-white">
             Daily Ledger Records for {selectedDate} ({filteredRecords.length} records)
           </h2>
-          <span className="text-[11px] text-slate-400">
+          <span className="text-[10px] sm:text-[11px] text-slate-400">
             Authorized viewing scope enforced by server API
           </span>
         </div>
@@ -285,8 +286,8 @@ export default function DailyReport() {
             <p>Try picking a different date or clearing active filter tags.</p>
           </div>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs text-slate-300">
+          <div className="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0 rounded-xl border border-slate-800/80">
+            <table className="w-full min-w-[780px] text-left text-xs text-slate-300">
               <thead className="bg-slate-800/60 uppercase tracking-wider text-slate-400 border-b border-slate-700">
                 <tr>
                   <th className="py-3 px-4">Employee</th>
